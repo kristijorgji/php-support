@@ -2,7 +2,6 @@
 
 Shared PHP primitives used by Single apps (and others):
 
-- `kristijorgji\Enum\Enum` — class-constant enum base (`hasValue`, `getKey`, …)
 - `kristijorgji\Money\*` — major-unit decimal money with bcmath (`Money`, `Number`, `Currency`, calculators)
 
 ## Install
