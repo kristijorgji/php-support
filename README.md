@@ -31,7 +31,8 @@ Local path (sibling checkout under `s/`):
 use kristijorgji\Money\Currency;
 use kristijorgji\Money\Money;
 
-new Money('10.00', Currency::from(new Currencies(Currencies::EUR)));
+new Money('10.00', new Currencies(Currencies::EUR));
+// or: Currency::from($currencies) / Currency::from('EUR')
 ```
 
 ## License

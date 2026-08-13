@@ -2,7 +2,7 @@
     "name": "kristijorgji/php-support",
     "description": "Shared PHP primitives: class-const Enum base and major-unit Money (bcmath)",
     "type": "library",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "license": "MIT",
     "authors": [
         {
@@ -31,6 +31,9 @@
     },
     "config": {
         "sort-packages": true
+    },
+    "scripts": {
+        "test": "phpunit"
     },
     "minimum-stability": "stable"
 }

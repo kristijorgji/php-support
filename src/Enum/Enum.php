@@ -4,7 +4,7 @@ namespace kristijorgji\Enum;
 
 use ReflectionClass;
 
-abstract class Enum
+abstract class Enum implements \Stringable
 {
     /**
      * @var array<class-string, true>

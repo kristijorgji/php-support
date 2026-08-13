@@ -28,7 +28,7 @@ final class Money implements JsonSerializable
      *
      * @throws \InvalidArgumentException
      */
-    public function __construct(float|int|string $value, Currency|string $currency)
+    public function __construct(float|int|string $value, Currency|string|\Stringable $currency)
     {
         $this->currency = $currency instanceof Currency ? $currency : Currency::from($currency);
         $numberFromString = Number::fromString((string) $value);
