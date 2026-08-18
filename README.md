@@ -3,6 +3,10 @@
 Shared PHP primitives used by Single apps (and others):
 
 - `kristijorgji\Money\*` — major-unit decimal money with bcmath (`Money`, `Number`, `Currency`, calculators)
+- `kristijorgji\Iso\*` — ISO country enum (union of the two Single apps, including `XK` and `SS`), product `Currencies` allowlist, and localized country name/flag lookup
+- `kristijorgji\Net\IpUtils` — client IP extraction, private-IP and bogon checks
+- `kristijorgji\Geo\*` — IP geolocation chain (`ChainGeoLocationService`) with header, MaxMind, ipinfo and ipstack resolvers
+- `kristijorgji\Support\*` — `TimeManager`, `Environments`, `LocaleProviderInterface`
 
 ## Install
 
@@ -24,15 +28,41 @@ Local path (sibling checkout under `s/`):
 
 ## Currency vs product allowlists
 
-`Currency` is a generic code VO. Product lists like `App\Constants\Currencies` stay in the app:
+`kristijorgji\Money\Currency` is a generic code VO. The product allowlist `kristijorgji\Iso\Currencies` is shared because both Single apps sell the same 9 codes:
 
 ```php
+use kristijorgji\Iso\Currencies;
 use kristijorgji\Money\Currency;
 use kristijorgji\Money\Money;
 
-new Money('10.00', new Currencies(Currencies::EUR));
-// or: Currency::from($currencies) / Currency::from('EUR')
+new Money('10.00', Currency::from(Currencies::EUR));
 ```
+
+Country defaults (e.g. falling back to Germany) stay in the consuming app — `Countries` has no `DEFAULT`.
+
+## Geolocation
+
+```php
+use kristijorgji\Geo\ChainGeoLocationService;
+use kristijorgji\Geo\Resolvers\HeaderCountryResolver;
+use kristijorgji\Geo\Resolvers\IpInfoResolver;
+use kristijorgji\Geo\Resolvers\IpStackResolver;
+use kristijorgji\Geo\Resolvers\MaxMindDbResolver;
+
+$service = new ChainGeoLocationService(
+    resolvers: [$header, $maxmind, $ipInfo, $ipStack],
+    logger: $psrLogger,
+    countryInfo: $countryInfoRepository,
+    localeProvider: $localeProvider,
+    cache: $psr16Cache,
+);
+```
+
+Bogon / private IPs are rejected locally before any resolver runs. `BogonCannotBeResolvedException` aborts the chain; a single resolver failure falls through to the next.
+
+Optional packages (declared as `suggest`): `guzzlehttp/guzzle` for HTTP resolvers, `geoip2/geoip2` for `MaxMindDbResolver`.
+
+Localized names live in `data/countries_info/{en,sq}.json`. Albanian names come from CLDR.
 
 ## License
 
