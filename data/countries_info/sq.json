@@ -1,0 +1,946 @@
+{
+  "AD": {
+    "name": "Andorrë",
+    "flagEmoji": "🇦🇩"
+  },
+  "AE": {
+    "name": "Emiratet e Bashkuara Arabe",
+    "flagEmoji": "🇦🇪"
+  },
+  "AF": {
+    "name": "Afganistan",
+    "flagEmoji": "🇦🇫"
+  },
+  "AG": {
+    "name": "Antigua e Barbuda",
+    "flagEmoji": "🇦🇬"
+  },
+  "AI": {
+    "name": "Anguilë",
+    "flagEmoji": "🇦🇮"
+  },
+  "AL": {
+    "name": "Shqipëri",
+    "flagEmoji": "🇦🇱"
+  },
+  "AM": {
+    "name": "Armeni",
+    "flagEmoji": "🇦🇲"
+  },
+  "AO": {
+    "name": "Angolë",
+    "flagEmoji": "🇦🇴"
+  },
+  "AQ": {
+    "name": "Antarktikë",
+    "flagEmoji": "🇦🇶"
+  },
+  "AR": {
+    "name": "Argjentinë",
+    "flagEmoji": "🇦🇷"
+  },
+  "AS": {
+    "name": "Samoa Amerikane",
+    "flagEmoji": "🇦🇸"
+  },
+  "AT": {
+    "name": "Austri",
+    "flagEmoji": "🇦🇹"
+  },
+  "AU": {
+    "name": "Australi",
+    "flagEmoji": "🇦🇺"
+  },
+  "AW": {
+    "name": "Arubë",
+    "flagEmoji": "🇦🇼"
+  },
+  "AX": {
+    "name": "Ishujt Alandë",
+    "flagEmoji": "🇦🇽"
+  },
+  "AZ": {
+    "name": "Azerbajxhan",
+    "flagEmoji": "🇦🇿"
+  },
+  "BA": {
+    "name": "Bosnjë-Hercegovinë",
+    "flagEmoji": "🇧🇦"
+  },
+  "BB": {
+    "name": "Barbados",
+    "flagEmoji": "🇧🇧"
+  },
+  "BD": {
+    "name": "Bangladesh",
+    "flagEmoji": "🇧🇩"
+  },
+  "BE": {
+    "name": "Belgjikë",
+    "flagEmoji": "🇧🇪"
+  },
+  "BF": {
+    "name": "Burkina-Faso",
+    "flagEmoji": "🇧🇫"
+  },
+  "BG": {
+    "name": "Bullgari",
+    "flagEmoji": "🇧🇬"
+  },
+  "BH": {
+    "name": "Bahrejn",
+    "flagEmoji": "🇧🇭"
+  },
+  "BI": {
+    "name": "Burundi",
+    "flagEmoji": "🇧🇮"
+  },
+  "BJ": {
+    "name": "Benin",
+    "flagEmoji": "🇧🇯"
+  },
+  "BM": {
+    "name": "Bermude",
+    "flagEmoji": "🇧🇲"
+  },
+  "BO": {
+    "name": "Bolivi",
+    "flagEmoji": "🇧🇴"
+  },
+  "BQ": {
+    "name": "Karaibet holandeze",
+    "flagEmoji": "🇧🇶"
+  },
+  "BR": {
+    "name": "Brazil",
+    "flagEmoji": "🇧🇷"
+  },
+  "BS": {
+    "name": "Bahama",
+    "flagEmoji": "🇧🇸"
+  },
+  "BV": {
+    "name": "Ishulli Bove",
+    "flagEmoji": "🇧🇻"
+  },
+  "BW": {
+    "name": "Botsvanë",
+    "flagEmoji": "🇧🇼"
+  },
+  "BY": {
+    "name": "Bjellorusi",
+    "flagEmoji": "🇧🇾"
+  },
+  "CA": {
+    "name": "Kanada",
+    "flagEmoji": "🇨🇦"
+  },
+  "CC": {
+    "name": "Ishujt Kokos",
+    "flagEmoji": "🇨🇨"
+  },
+  "CD": {
+    "name": "Kongo-Kinshasa",
+    "flagEmoji": "🇨🇩"
+  },
+  "CF": {
+    "name": "Republika e Afrikës Qendrore",
+    "flagEmoji": "🇨🇫"
+  },
+  "CG": {
+    "name": "Kongo-Brazavilë",
+    "flagEmoji": "🇨🇬"
+  },
+  "CH": {
+    "name": "Zvicër",
+    "flagEmoji": "🇨🇭"
+  },
+  "CI": {
+    "name": "Côte d’Ivoire",
+    "flagEmoji": "🇨🇮"
+  },
+  "CK": {
+    "name": "Ishujt Kuk",
+    "flagEmoji": "🇨🇰"
+  },
+  "CL": {
+    "name": "Kili",
+    "flagEmoji": "🇨🇱"
+  },
+  "CM": {
+    "name": "Kamerun",
+    "flagEmoji": "🇨🇲"
+  },
+  "CN": {
+    "name": "Kinë",
+    "flagEmoji": "🇨🇳"
+  },
+  "CO": {
+    "name": "Kolumbi",
+    "flagEmoji": "🇨🇴"
+  },
+  "CR": {
+    "name": "Kosta-Rikë",
+    "flagEmoji": "🇨🇷"
+  },
+  "CU": {
+    "name": "Kubë",
+    "flagEmoji": "🇨🇺"
+  },
+  "CV": {
+    "name": "Kepi i Gjelbër",
+    "flagEmoji": "🇨🇻"
+  },
+  "CW": {
+    "name": "Kurasao",
+    "flagEmoji": "🇨🇼"
+  },
+  "CY": {
+    "name": "Qipro",
+    "flagEmoji": "🇨🇾"
+  },
+  "CZ": {
+    "name": "Çeki",
+    "flagEmoji": "🇨🇿"
+  },
+  "DE": {
+    "name": "Gjermani",
+    "flagEmoji": "🇩🇪"
+  },
+  "DJ": {
+    "name": "Xhibuti",
+    "flagEmoji": "🇩🇯"
+  },
+  "DK": {
+    "name": "Danimarkë",
+    "flagEmoji": "🇩🇰"
+  },
+  "DM": {
+    "name": "Dominikë",
+    "flagEmoji": "🇩🇲"
+  },
+  "DO": {
+    "name": "Republika Dominikane",
+    "flagEmoji": "🇩🇴"
+  },
+  "DZ": {
+    "name": "Algjeri",
+    "flagEmoji": "🇩🇿"
+  },
+  "EC": {
+    "name": "Ekuador",
+    "flagEmoji": "🇪🇨"
+  },
+  "EE": {
+    "name": "Estoni",
+    "flagEmoji": "🇪🇪"
+  },
+  "EG": {
+    "name": "Egjipt",
+    "flagEmoji": "🇪🇬"
+  },
+  "EH": {
+    "name": "Saharaja Perëndimore",
+    "flagEmoji": "🇪🇭"
+  },
+  "ER": {
+    "name": "Eritre",
+    "flagEmoji": "🇪🇷"
+  },
+  "ES": {
+    "name": "Spanjë",
+    "flagEmoji": "🇪🇸"
+  },
+  "ET": {
+    "name": "Etiopi",
+    "flagEmoji": "🇪🇹"
+  },
+  "FI": {
+    "name": "Finlandë",
+    "flagEmoji": "🇫🇮"
+  },
+  "FJ": {
+    "name": "Fixhi",
+    "flagEmoji": "🇫🇯"
+  },
+  "FK": {
+    "name": "Ishujt Falkland",
+    "flagEmoji": "🇫🇰"
+  },
+  "FM": {
+    "name": "Mikronezi",
+    "flagEmoji": "🇫🇲"
+  },
+  "FO": {
+    "name": "Ishujt Faroe",
+    "flagEmoji": "🇫🇴"
+  },
+  "FR": {
+    "name": "Francë",
+    "flagEmoji": "🇫🇷"
+  },
+  "GA": {
+    "name": "Gabon",
+    "flagEmoji": "🇬🇦"
+  },
+  "GB": {
+    "name": "Mbretëria e Bashkuar",
+    "flagEmoji": "🇬🇧"
+  },
+  "GD": {
+    "name": "Granadë",
+    "flagEmoji": "🇬🇩"
+  },
+  "GE": {
+    "name": "Gjeorgji",
+    "flagEmoji": "🇬🇪"
+  },
+  "GG": {
+    "name": "Gernsej",
+    "flagEmoji": "🇬🇬"
+  },
+  "GH": {
+    "name": "Ganë",
+    "flagEmoji": "🇬🇭"
+  },
+  "GI": {
+    "name": "Gjibraltar",
+    "flagEmoji": "🇬🇮"
+  },
+  "GL": {
+    "name": "Grënlandë",
+    "flagEmoji": "🇬🇱"
+  },
+  "GM": {
+    "name": "Gambi",
+    "flagEmoji": "🇬🇲"
+  },
+  "GN": {
+    "name": "Guine",
+    "flagEmoji": "🇬🇳"
+  },
+  "GP": {
+    "name": "Guadelupë",
+    "flagEmoji": "🇬🇵"
+  },
+  "GQ": {
+    "name": "Guineja Ekuatoriale",
+    "flagEmoji": "🇬🇶"
+  },
+  "GR": {
+    "name": "Greqi",
+    "flagEmoji": "🇬🇷"
+  },
+  "GT": {
+    "name": "Guatemalë",
+    "flagEmoji": "🇬🇹"
+  },
+  "GU": {
+    "name": "Guam",
+    "flagEmoji": "🇬🇺"
+  },
+  "GW": {
+    "name": "Guine-Bisau",
+    "flagEmoji": "🇬🇼"
+  },
+  "GY": {
+    "name": "Guajanë",
+    "flagEmoji": "🇬🇾"
+  },
+  "HK": {
+    "name": "RPA i Hong-Kongut",
+    "flagEmoji": "🇭🇰"
+  },
+  "HM": {
+    "name": "Ishujt Hërd e Mekdonald",
+    "flagEmoji": "🇭🇲"
+  },
+  "HN": {
+    "name": "Honduras",
+    "flagEmoji": "🇭🇳"
+  },
+  "HR": {
+    "name": "Kroaci",
+    "flagEmoji": "🇭🇷"
+  },
+  "HT": {
+    "name": "Haiti",
+    "flagEmoji": "🇭🇹"
+  },
+  "HU": {
+    "name": "Hungari",
+    "flagEmoji": "🇭🇺"
+  },
+  "ID": {
+    "name": "Indonezi",
+    "flagEmoji": "🇮🇩"
+  },
+  "IE": {
+    "name": "Irlandë",
+    "flagEmoji": "🇮🇪"
+  },
+  "IL": {
+    "name": "Izrael",
+    "flagEmoji": "🇮🇱"
+  },
+  "IM": {
+    "name": "Ishulli i Manit",
+    "flagEmoji": "🇮🇲"
+  },
+  "IN": {
+    "name": "Indi",
+    "flagEmoji": "🇮🇳"
+  },
+  "IO": {
+    "name": "Territori Britanik i Oqeanit Indian",
+    "flagEmoji": "🇮🇴"
+  },
+  "IQ": {
+    "name": "Irak",
+    "flagEmoji": "🇮🇶"
+  },
+  "IR": {
+    "name": "Iran",
+    "flagEmoji": "🇮🇷"
+  },
+  "IS": {
+    "name": "Islandë",
+    "flagEmoji": "🇮🇸"
+  },
+  "IT": {
+    "name": "Itali",
+    "flagEmoji": "🇮🇹"
+  },
+  "JE": {
+    "name": "Xhersej",
+    "flagEmoji": "🇯🇪"
+  },
+  "JM": {
+    "name": "Xhamajkë",
+    "flagEmoji": "🇯🇲"
+  },
+  "JO": {
+    "name": "Jordani",
+    "flagEmoji": "🇯🇴"
+  },
+  "JP": {
+    "name": "Japoni",
+    "flagEmoji": "🇯🇵"
+  },
+  "KE": {
+    "name": "Kenia",
+    "flagEmoji": "🇰🇪"
+  },
+  "KG": {
+    "name": "Kirgizi",
+    "flagEmoji": "🇰🇬"
+  },
+  "KH": {
+    "name": "Kamboxhia",
+    "flagEmoji": "🇰🇭"
+  },
+  "KI": {
+    "name": "Kiribati",
+    "flagEmoji": "🇰🇮"
+  },
+  "KM": {
+    "name": "Komore",
+    "flagEmoji": "🇰🇲"
+  },
+  "KN": {
+    "name": "Shën-Kits dhe Nevis",
+    "flagEmoji": "🇰🇳"
+  },
+  "KR": {
+    "name": "Kore e Jugut",
+    "flagEmoji": "🇰🇷"
+  },
+  "KW": {
+    "name": "Kuvajt",
+    "flagEmoji": "🇰🇼"
+  },
+  "KY": {
+    "name": "Ishujt Kajman",
+    "flagEmoji": "🇰🇾"
+  },
+  "KZ": {
+    "name": "Kazakistan",
+    "flagEmoji": "🇰🇿"
+  },
+  "LA": {
+    "name": "Laos",
+    "flagEmoji": "🇱🇦"
+  },
+  "LB": {
+    "name": "Liban",
+    "flagEmoji": "🇱🇧"
+  },
+  "LC": {
+    "name": "Shën-Luçia",
+    "flagEmoji": "🇱🇨"
+  },
+  "LI": {
+    "name": "Lihtenshtajn",
+    "flagEmoji": "🇱🇮"
+  },
+  "LK": {
+    "name": "Sri-Lankë",
+    "flagEmoji": "🇱🇰"
+  },
+  "LR": {
+    "name": "Liberi",
+    "flagEmoji": "🇱🇷"
+  },
+  "LS": {
+    "name": "Lesoto",
+    "flagEmoji": "🇱🇸"
+  },
+  "LT": {
+    "name": "Lituani",
+    "flagEmoji": "🇱🇹"
+  },
+  "LU": {
+    "name": "Luksemburg",
+    "flagEmoji": "🇱🇺"
+  },
+  "LV": {
+    "name": "Letoni",
+    "flagEmoji": "🇱🇻"
+  },
+  "LY": {
+    "name": "Libi",
+    "flagEmoji": "🇱🇾"
+  },
+  "MA": {
+    "name": "Marok",
+    "flagEmoji": "🇲🇦"
+  },
+  "MC": {
+    "name": "Monako",
+    "flagEmoji": "🇲🇨"
+  },
+  "MD": {
+    "name": "Moldavi",
+    "flagEmoji": "🇲🇩"
+  },
+  "ME": {
+    "name": "Mal i Zi",
+    "flagEmoji": "🇲🇪"
+  },
+  "MF": {
+    "name": "Sen-Marten",
+    "flagEmoji": "🇲🇫"
+  },
+  "MG": {
+    "name": "Madagaskar",
+    "flagEmoji": "🇲🇬"
+  },
+  "MH": {
+    "name": "Ishujt Marshall",
+    "flagEmoji": "🇲🇭"
+  },
+  "MK": {
+    "name": "Maqedonia e Veriut",
+    "flagEmoji": "🇲🇰"
+  },
+  "ML": {
+    "name": "Mali",
+    "flagEmoji": "🇲🇱"
+  },
+  "MM": {
+    "name": "Mianmar (Burmë)",
+    "flagEmoji": "🇲🇲"
+  },
+  "MN": {
+    "name": "Mongoli",
+    "flagEmoji": "🇲🇳"
+  },
+  "MO": {
+    "name": "RPA i Makaos",
+    "flagEmoji": "🇲🇴"
+  },
+  "MP": {
+    "name": "Ishujt e Marianës Veriore",
+    "flagEmoji": "🇲🇵"
+  },
+  "MQ": {
+    "name": "Martinikë",
+    "flagEmoji": "🇲🇶"
+  },
+  "MR": {
+    "name": "Mauritani",
+    "flagEmoji": "🇲🇷"
+  },
+  "MS": {
+    "name": "Montserat",
+    "flagEmoji": "🇲🇸"
+  },
+  "MT": {
+    "name": "Maltë",
+    "flagEmoji": "🇲🇹"
+  },
+  "MU": {
+    "name": "Mauritius",
+    "flagEmoji": "🇲🇺"
+  },
+  "MV": {
+    "name": "Maldive",
+    "flagEmoji": "🇲🇻"
+  },
+  "MW": {
+    "name": "Malavi",
+    "flagEmoji": "🇲🇼"
+  },
+  "MX": {
+    "name": "Meksikë",
+    "flagEmoji": "🇲🇽"
+  },
+  "MY": {
+    "name": "Malajzi",
+    "flagEmoji": "🇲🇾"
+  },
+  "MZ": {
+    "name": "Mozambik",
+    "flagEmoji": "🇲🇿"
+  },
+  "NA": {
+    "name": "Namibi",
+    "flagEmoji": "🇳🇦"
+  },
+  "NC": {
+    "name": "Kaledoni e Re",
+    "flagEmoji": "🇳🇨"
+  },
+  "NE": {
+    "name": "Niger",
+    "flagEmoji": "🇳🇪"
+  },
+  "NG": {
+    "name": "Nigeri",
+    "flagEmoji": "🇳🇬"
+  },
+  "NI": {
+    "name": "Nikaragua",
+    "flagEmoji": "🇳🇮"
+  },
+  "NL": {
+    "name": "Holandë",
+    "flagEmoji": "🇳🇱"
+  },
+  "NO": {
+    "name": "Norvegji",
+    "flagEmoji": "🇳🇴"
+  },
+  "NP": {
+    "name": "Nepal",
+    "flagEmoji": "🇳🇵"
+  },
+  "NR": {
+    "name": "Nauru",
+    "flagEmoji": "🇳🇷"
+  },
+  "NU": {
+    "name": "Niue",
+    "flagEmoji": "🇳🇺"
+  },
+  "NZ": {
+    "name": "Zelandë e Re",
+    "flagEmoji": "🇳🇿"
+  },
+  "OM": {
+    "name": "Oman",
+    "flagEmoji": "🇴🇲"
+  },
+  "PA": {
+    "name": "Panama",
+    "flagEmoji": "🇵🇦"
+  },
+  "PE": {
+    "name": "Peru",
+    "flagEmoji": "🇵🇪"
+  },
+  "PF": {
+    "name": "Polinezia Franceze",
+    "flagEmoji": "🇵🇫"
+  },
+  "PH": {
+    "name": "Filipine",
+    "flagEmoji": "🇵🇭"
+  },
+  "PK": {
+    "name": "Pakistan",
+    "flagEmoji": "🇵🇰"
+  },
+  "PL": {
+    "name": "Poloni",
+    "flagEmoji": "🇵🇱"
+  },
+  "PM": {
+    "name": "Shën-Pier dhe Mikelon",
+    "flagEmoji": "🇵🇲"
+  },
+  "PN": {
+    "name": "Ishujt Pitkern",
+    "flagEmoji": "🇵🇳"
+  },
+  "PR": {
+    "name": "Porto-Riko",
+    "flagEmoji": "🇵🇷"
+  },
+  "PS": {
+    "name": "Territoret Palestineze",
+    "flagEmoji": "🇵🇸"
+  },
+  "PT": {
+    "name": "Portugali",
+    "flagEmoji": "🇵🇹"
+  },
+  "PW": {
+    "name": "Palau",
+    "flagEmoji": "🇵🇼"
+  },
+  "PY": {
+    "name": "Paraguai",
+    "flagEmoji": "🇵🇾"
+  },
+  "QA": {
+    "name": "Katar",
+    "flagEmoji": "🇶🇦"
+  },
+  "RE": {
+    "name": "Reunion",
+    "flagEmoji": "🇷🇪"
+  },
+  "RO": {
+    "name": "Rumani",
+    "flagEmoji": "🇷🇴"
+  },
+  "RS": {
+    "name": "Serbi",
+    "flagEmoji": "🇷🇸"
+  },
+  "RU": {
+    "name": "Rusi",
+    "flagEmoji": "🇷🇺"
+  },
+  "RW": {
+    "name": "Ruandë",
+    "flagEmoji": "🇷🇼"
+  },
+  "SA": {
+    "name": "Arabi Saudite",
+    "flagEmoji": "🇸🇦"
+  },
+  "SB": {
+    "name": "Ishujt Solomon",
+    "flagEmoji": "🇸🇧"
+  },
+  "SC": {
+    "name": "Sejshelle",
+    "flagEmoji": "🇸🇨"
+  },
+  "SD": {
+    "name": "Sudan",
+    "flagEmoji": "🇸🇩"
+  },
+  "SE": {
+    "name": "Suedi",
+    "flagEmoji": "🇸🇪"
+  },
+  "SG": {
+    "name": "Singapor",
+    "flagEmoji": "🇸🇬"
+  },
+  "SH": {
+    "name": "Shën-Elenë",
+    "flagEmoji": "🇸🇭"
+  },
+  "SI": {
+    "name": "Slloveni",
+    "flagEmoji": "🇸🇮"
+  },
+  "SJ": {
+    "name": "Svalbard e Jan-Majen",
+    "flagEmoji": "🇸🇯"
+  },
+  "SK": {
+    "name": "Sllovaki",
+    "flagEmoji": "🇸🇰"
+  },
+  "SL": {
+    "name": "Sierra-Leone",
+    "flagEmoji": "🇸🇱"
+  },
+  "SM": {
+    "name": "San-Marino",
+    "flagEmoji": "🇸🇲"
+  },
+  "SN": {
+    "name": "Senegal",
+    "flagEmoji": "🇸🇳"
+  },
+  "SO": {
+    "name": "Somali",
+    "flagEmoji": "🇸🇴"
+  },
+  "SR": {
+    "name": "Surinami",
+    "flagEmoji": "🇸🇷"
+  },
+  "SS": {
+    "name": "Sudani i Jugut",
+    "flagEmoji": "🇸🇸"
+  },
+  "ST": {
+    "name": "Sao-Tome e Principe",
+    "flagEmoji": "🇸🇹"
+  },
+  "SV": {
+    "name": "Salvador",
+    "flagEmoji": "🇸🇻"
+  },
+  "SX": {
+    "name": "Sint-Marten",
+    "flagEmoji": "🇸🇽"
+  },
+  "SY": {
+    "name": "Siri",
+    "flagEmoji": "🇸🇾"
+  },
+  "TC": {
+    "name": "Ishujt Turks dhe Kaikos",
+    "flagEmoji": "🇹🇨"
+  },
+  "TD": {
+    "name": "Çad",
+    "flagEmoji": "🇹🇩"
+  },
+  "TF": {
+    "name": "Territoret Jugore Franceze",
+    "flagEmoji": "🇹🇫"
+  },
+  "TG": {
+    "name": "Togo",
+    "flagEmoji": "🇹🇬"
+  },
+  "TH": {
+    "name": "Tajlandë",
+    "flagEmoji": "🇹🇭"
+  },
+  "TK": {
+    "name": "Tokelau",
+    "flagEmoji": "🇹🇰"
+  },
+  "TL": {
+    "name": "Timor-Leste",
+    "flagEmoji": "🇹🇱"
+  },
+  "TN": {
+    "name": "Tunizi",
+    "flagEmoji": "🇹🇳"
+  },
+  "TO": {
+    "name": "Tonga",
+    "flagEmoji": "🇹🇴"
+  },
+  "TR": {
+    "name": "Turqi",
+    "flagEmoji": "🇹🇷"
+  },
+  "TT": {
+    "name": "Trinidad e Tobago",
+    "flagEmoji": "🇹🇹"
+  },
+  "TV": {
+    "name": "Tuvalu",
+    "flagEmoji": "🇹🇻"
+  },
+  "TW": {
+    "name": "Tajvan",
+    "flagEmoji": "🇹🇼"
+  },
+  "TZ": {
+    "name": "Tanzani",
+    "flagEmoji": "🇹🇿"
+  },
+  "UA": {
+    "name": "Ukrainë",
+    "flagEmoji": "🇺🇦"
+  },
+  "UG": {
+    "name": "Ugandë",
+    "flagEmoji": "🇺🇬"
+  },
+  "UM": {
+    "name": "Ishujt Periferikë të SHBA-së",
+    "flagEmoji": "🇺🇲"
+  },
+  "US": {
+    "name": "Shtetet e Bashkuara",
+    "flagEmoji": "🇺🇸"
+  },
+  "UY": {
+    "name": "Uruguai",
+    "flagEmoji": "🇺🇾"
+  },
+  "UZ": {
+    "name": "Uzbekistan",
+    "flagEmoji": "🇺🇿"
+  },
+  "VA": {
+    "name": "Vatikan",
+    "flagEmoji": "🇻🇦"
+  },
+  "VC": {
+    "name": "Shën-Vincent dhe Grenadine",
+    "flagEmoji": "🇻🇨"
+  },
+  "VE": {
+    "name": "Venezuelë",
+    "flagEmoji": "🇻🇪"
+  },
+  "VG": {
+    "name": "Ishujt e Virgjër Britanikë",
+    "flagEmoji": "🇻🇬"
+  },
+  "VI": {
+    "name": "Ishujt e Virgjër të SHBA-së",
+    "flagEmoji": "🇻🇮"
+  },
+  "VN": {
+    "name": "Vietnam",
+    "flagEmoji": "🇻🇳"
+  },
+  "WF": {
+    "name": "Uollis e Futuna",
+    "flagEmoji": "🇼🇫"
+  },
+  "WS": {
+    "name": "Samoa",
+    "flagEmoji": "🇼🇸"
+  },
+  "XK": {
+    "name": "Kosovë",
+    "flagEmoji": "🇽🇰"
+  },
+  "YE": {
+    "name": "Jemen",
+    "flagEmoji": "🇾🇪"
+  },
+  "YT": {
+    "name": "Majotë",
+    "flagEmoji": "🇾🇹"
+  },
+  "ZA": {
+    "name": "Afrika e Jugut",
+    "flagEmoji": "🇿🇦"
+  },
+  "ZM": {
+    "name": "Zambi",
+    "flagEmoji": "🇿🇲"
+  },
+  "ZW": {
+    "name": "Zimbabve",
+    "flagEmoji": "🇿🇼"
+  }
+}

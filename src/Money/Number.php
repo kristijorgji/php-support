@@ -2,13 +2,22 @@
 
 namespace kristijorgji\Money;
 
-final class Number
+use InvalidArgumentException;
+use Stringable;
+use ValueError;
+use function rtrim;
+use function sprintf;
+use function str_replace;
+use function strlen;
+use function strpos;
+use function substr;
+
+final class Number implements Stringable
 {
-    const DECIMAL_SEPARATOR = '.';
-    const DECIMAL_PRECISION = '14';
+    public const string DECIMAL_SEPARATOR = '.';
+    public const string DECIMAL_PRECISION = '14';
 
     private string $integerPart;
-
     private string $fractionalPart;
 
     /**
@@ -18,12 +27,12 @@ final class Number
 
     public function __construct(string $integerPart, string $fractionalPart = '')
     {
-        if ('' === $integerPart && '' === $fractionalPart) {
-            throw new \InvalidArgumentException('Empty number is invalid');
+        if ($integerPart === '' && $fractionalPart === '') {
+            throw new InvalidArgumentException('Empty number is invalid');
         }
 
-        $this->integerPart = $this->parseIntegerPart((string) $integerPart);
-        $this->fractionalPart = $this->parseFractionalPart((string) $fractionalPart);
+        $this->integerPart = self::parseIntegerPart($integerPart);
+        $this->fractionalPart = self::parseFractionalPart($fractionalPart);
     }
 
     public function isDecimal() : bool
@@ -56,10 +65,7 @@ final class Number
         return (int) $this->fractionalPart[0] >= 5;
     }
 
-    /**
-     * @return string
-     */
-    public function __toString()
+    public function __toString(): string
     {
         if ($this->fractionalPart === '') {
             return $this->integerPart;
@@ -69,7 +75,7 @@ final class Number
 
     /**
      * @param $number
-     * @throws \InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public static function fromString(string $number) : Number
     {
@@ -81,7 +87,7 @@ final class Number
 
         return new self(
             self::removeLeadingZeros(substr($number, 0, $decimalSeparatorPosition)),
-            rtrim(substr($number, $decimalSeparatorPosition + 1), '0')
+            rtrim(substr($number, $decimalSeparatorPosition + 1), '0'),
         );
     }
 
@@ -96,7 +102,7 @@ final class Number
             $c = $v[$i];
             if ($c === '-') {
                 if ($i !== 0) {
-                    throw new \ValueError();
+                    throw new ValueError;
                 }
                 $firstSign = true;
                 $r .= $c;
@@ -119,10 +125,7 @@ final class Number
         return $r;
     }
 
-    /**
-     * @return Number
-     */
-    public static function fromFloat(float $floatingPoint)
+    public static function fromFloat(float $floatingPoint): Number
     {
         $format = '%.' . self::DECIMAL_PRECISION . 'F';
         return self::fromString(sprintf($format, $floatingPoint));
@@ -154,11 +157,11 @@ final class Number
 
     private static function parseIntegerPart(string $number) : string
     {
-        if ('' === $number || '0' === $number) {
+        if ($number === '' || $number === '0') {
             return '0';
         }
 
-        if ('-' === $number) {
+        if ($number === '-') {
             return '-0';
         }
 
@@ -166,15 +169,15 @@ final class Number
 
         for ($position = 0, $characters = strlen($number); $position < $characters; ++$position) {
             $digit = $number[$position];
-            if (!isset(self::$numbers[$digit]) && !(0 === $position && '-' === $digit)) {
-                throw new \InvalidArgumentException(
-                    sprintf('Invalid integer part %s. Invalid digit %2 found', $number, $digit)
+            if (!isset(self::$numbers[$digit]) && !($position === 0 && $digit === '-')) {
+                throw new InvalidArgumentException(
+                    sprintf('Invalid integer part %s. Invalid digit %2 found', $number, $digit),
                 );
             }
 
-            if (false === $nonZero && '0' === $digit) {
-                throw new \InvalidArgumentException(
-                    'Leading zeros are not allowed'
+            if ($nonZero === false && $digit === '0') {
+                throw new InvalidArgumentException(
+                    'Leading zeros are not allowed',
                 );
             }
             $nonZero = true;
@@ -185,15 +188,15 @@ final class Number
 
     private static function parseFractionalPart(string $number) : string
     {
-        if ('' === $number) {
+        if ($number === '') {
             return $number;
         }
 
         for ($position = 0, $characters = strlen($number); $position < $characters; ++$position) {
             $digit = $number[$position];
             if (!isset(self::$numbers[$digit])) {
-                throw new \InvalidArgumentException(
-                    'Invalid fractional part '.$number.'. Invalid digit '.$digit.' found'
+                throw new InvalidArgumentException(
+                    'Invalid fractional part '.$number.'. Invalid digit '.$digit.' found',
                 );
             }
         }

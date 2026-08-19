@@ -2,10 +2,17 @@
 
 namespace kristijorgji\Money\Calculator;
 
+use InvalidArgumentException;
 use kristijorgji\Money\Money;
 use kristijorgji\Money\Number;
+use function bcadd;
+use function bccomp;
+use function bcdiv;
+use function bcmul;
+use function bcsub;
+use function ltrim;
 
-final class BcMathCalculator implements CalculatorInterface
+final readonly class BcMathCalculator implements CalculatorInterface
 {
     public function __construct(private int $scale = 14)
     {
@@ -42,7 +49,7 @@ final class BcMathCalculator implements CalculatorInterface
         if ($number->isDecimal() === false) {
             return (string) $number;
         }
-        if ($number->isNegative() === true) {
+        if ($number->isNegative()) {
             return bcadd((string) $number, '0', 0);
         }
         return bcadd((string) $number, '1', 0);
@@ -54,7 +61,7 @@ final class BcMathCalculator implements CalculatorInterface
         if ($number->isDecimal() === false) {
             return (string) $number;
         }
-        if ($number->isNegative() === true) {
+        if ($number->isNegative()) {
             return bcadd((string) $number, '-1', 0);
         }
         return bcadd((string) $number, '0', 0);
@@ -74,74 +81,74 @@ final class BcMathCalculator implements CalculatorInterface
         if ($number->isHalf() === false) {
             return $this->roundDigit($number);
         }
-        if (Money::ROUND_HALF_UP === $roundingMode) {
+        if ($roundingMode === Money::ROUND_HALF_UP) {
             return bcadd(
                 (string) $number,
                 $number->getIntegerRoundingMultiplier(),
-                0
+                0,
             );
         }
-        if (Money::ROUND_HALF_DOWN === $roundingMode) {
+        if ($roundingMode === Money::ROUND_HALF_DOWN) {
             return bcadd((string) $number, '0', 0);
         }
-        if (Money::ROUND_HALF_EVEN === $roundingMode) {
-            if ($number->isCurrentEven() === true) {
+        if ($roundingMode === Money::ROUND_HALF_EVEN) {
+            if ($number->isCurrentEven()) {
                 return bcadd((string) $number, '0', 0);
             }
             return bcadd(
                 (string) $number,
                 $number->getIntegerRoundingMultiplier(),
-                0
+                0,
             );
         }
-        if (Money::ROUND_HALF_ODD === $roundingMode) {
-            if ($number->isCurrentEven() === true) {
+        if ($roundingMode === Money::ROUND_HALF_ODD) {
+            if ($number->isCurrentEven()) {
                 return bcadd(
                     (string) $number,
                     $number->getIntegerRoundingMultiplier(),
-                    0
+                    0,
                 );
             }
             return bcadd((string) $number, '0', 0);
         }
-        if (Money::ROUND_HALF_POSITIVE_INFINITY === $roundingMode) {
-            if ($number->isNegative() === true) {
+        if ($roundingMode === Money::ROUND_HALF_POSITIVE_INFINITY) {
+            if ($number->isNegative()) {
                 return bcadd((string) $number, '0', 0);
             }
             return bcadd(
                 (string) $number,
                 $number->getIntegerRoundingMultiplier(),
-                0
+                0,
             );
         }
-        if (Money::ROUND_HALF_NEGATIVE_INFINITY === $roundingMode) {
-            if ($number->isNegative() === true) {
+        if ($roundingMode === Money::ROUND_HALF_NEGATIVE_INFINITY) {
+            if ($number->isNegative()) {
                 return bcadd(
                     (string) $number,
                     $number->getIntegerRoundingMultiplier(),
-                    0
+                    0,
                 );
             }
             return bcadd(
                 (string) $number,
                 '0',
-                0
+                0,
             );
         }
-        throw new \InvalidArgumentException('Unknown rounding mode');
+        throw new InvalidArgumentException('Unknown rounding mode');
     }
+
     /**
      * @param $number
      *
-     * @return string
      */
-    private function roundDigit(Number $number)
+    private function roundDigit(Number $number): string
     {
         if ($number->isCloserToNext()) {
             return bcadd(
                 (string) $number,
                 $number->getIntegerRoundingMultiplier(),
-                0
+                0,
             );
         }
         return bcadd((string) $number, '0', 0);
@@ -153,8 +160,8 @@ final class BcMathCalculator implements CalculatorInterface
             bcdiv(
                 bcmul((string) $amount, (string) $ratio, $this->scale),
                 (string) $total,
-                $this->scale
-            )
+                $this->scale,
+            ),
         );
     }
 }
