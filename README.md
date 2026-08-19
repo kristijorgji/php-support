@@ -3,7 +3,9 @@
 Shared PHP primitives:
 
 - `kristijorgji\Money\*` — major-unit decimal money with bcmath (`Money`, `Number`, `Currency`, calculators)
-- `kristijorgji\Iso\*` — ISO 3166-1 alpha-2 country enum (plus the commonly-needed non-ISO `XK` and `SS`), a nine-code product `Currencies` allowlist, and localized country name/flag lookup
+- `kristijorgji\Iso\*` — ISO 3166-1 alpha-2 country enum (plus the
+  commonly-needed non-ISO `XK` and `SS`), a nine-code product
+  `Currencies` allowlist, and localized country name/flag lookup
 - `kristijorgji\Net\IpUtils` — client IP extraction, private-IP and bogon checks
 - `kristijorgji\Geo\*` — IP geolocation chain (`ChainGeoLocationService`) with header, MaxMind, ipinfo and ipstack resolvers
 - `kristijorgji\Support\*` — `TimeManager`, `Environments`, `LocaleProviderInterface`
@@ -28,7 +30,9 @@ Local path (sibling checkout):
 
 ## Currency vs product allowlists
 
-`kristijorgji\Money\Currency` is a generic code VO. The product allowlist `kristijorgji\Iso\Currencies` is a nine-code allowlist for products that sell in a fixed set of currencies:
+`kristijorgji\Money\Currency` is a generic code VO. The product
+allowlist `kristijorgji\Iso\Currencies` is a nine-code allowlist for
+products that sell in a fixed set of currencies:
 
 ```php
 use kristijorgji\Iso\Currencies;
@@ -58,7 +62,9 @@ $service = new ChainGeoLocationService(
 );
 ```
 
-Bogon / private IPs are rejected locally before any resolver runs. `BogonCannotBeResolvedException` aborts the chain; a single resolver failure falls through to the next.
+Bogon / private IPs are rejected locally before any resolver runs.
+`BogonCannotBeResolvedException` aborts the chain; a single resolver
+failure falls through to the next.
 
 Optional packages (declared as `suggest`): `guzzlehttp/guzzle` for HTTP resolvers, `geoip2/geoip2` for `MaxMindDbResolver`.
 
