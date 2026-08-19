@@ -6,11 +6,11 @@ use kristijorgji\Geo\GeoLocationDetailsBuilder;
 use kristijorgji\Tests\Geo\Factories\GeoLocationDetailsFactory;
 use PHPUnit\Framework\TestCase;
 
-class GeoLocationDetailsBuilderTest extends TestCase
+final class GeoLocationDetailsBuilderTest extends TestCase
 {
     public function test_can_overwrite_name_flag_and_emoji(): void
     {
-        $built = (new GeoLocationDetailsBuilder(GeoLocationDetailsFactory::make(['countryName' => null])))
+        $built = new GeoLocationDetailsBuilder(GeoLocationDetailsFactory::make(['countryName' => null]))
             ->setCountryName('Shqipëri')
             ->setCountryFlag('https://flagcdn.com/al.svg')
             ->setCountryFlagEmoji('🇦🇱')

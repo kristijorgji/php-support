@@ -8,8 +8,9 @@ use kristijorgji\Geo\Exceptions\GeoLocationResolverException;
 use kristijorgji\Geo\Resolvers\IpStackResolver;
 use kristijorgji\Iso\Countries;
 use PHPUnit\Framework\TestCase;
+use function json_encode;
 
-class IpStackResolverTest extends TestCase
+final class IpStackResolverTest extends TestCase
 {
     public function test_maps_successful_response_including_flag(): void
     {
@@ -26,7 +27,7 @@ class IpStackResolverTest extends TestCase
         $client = $this->createMock(ClientInterface::class);
         $client->method('request')->willReturn(new Response(200, [], $body));
 
-        $details = (new IpStackResolver($client, 'key'))->detailsFromIp('8.8.8.8');
+        $details = new IpStackResolver($client, 'key')->detailsFromIp('8.8.8.8');
         $this->assertSame(Countries::ALBANIA, $details->getCountryCode());
         $this->assertSame('Albania', $details->getCountryName());
         $this->assertSame('https://flagcdn.com/al.svg', $details->getCountryFlag());
@@ -39,7 +40,7 @@ class IpStackResolverTest extends TestCase
         $client->method('request')->willReturn(new Response(200, [], '{"success":false}'));
 
         $this->expectException(GeoLocationResolverException::class);
-        (new IpStackResolver($client, 'key'))->detailsFromIp('8.8.8.8');
+        new IpStackResolver($client, 'key')->detailsFromIp('8.8.8.8');
     }
 
     public function test_pseudo_country_code_is_resolver_exception(): void
@@ -48,6 +49,6 @@ class IpStackResolverTest extends TestCase
         $client->method('request')->willReturn(new Response(200, [], '{"country_code":"EU"}'));
 
         $this->expectException(GeoLocationResolverException::class);
-        (new IpStackResolver($client, 'key'))->detailsFromIp('8.8.8.8');
+        new IpStackResolver($client, 'key')->detailsFromIp('8.8.8.8');
     }
 }

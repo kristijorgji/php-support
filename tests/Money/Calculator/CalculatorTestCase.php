@@ -3,8 +3,12 @@
 namespace kristijorgji\Money\Tests\Calculator;
 
 use kristijorgji\Money\Calculator\CalculatorInterface;
-use PHPUnit\Framework\TestCase;
 use kristijorgji\Money\Tests\RoundExamples;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
+use PHPUnit\Framework\TestCase;
+use function strlen;
+use function substr;
 
 abstract class CalculatorTestCase extends TestCase
 {
@@ -12,101 +16,97 @@ abstract class CalculatorTestCase extends TestCase
 
     abstract protected function getCalculator(): CalculatorInterface;
 
-    /**
-     * @dataProvider additionExamples
-     * @test
-     */
-    public function it_adds_two_values(int|float|string $value1, int|float|string $value2, int|float|string $expected)
-    {
+    #[DataProvider('additionExamples')]
+    #[Test]
+    public function it_adds_two_values(
+        int|float|string $value1,
+        int|float|string $value2,
+        int|float|string $expected,
+    ): void {
         $this->assertEquals($expected, $this->getCalculator()->add($value1, $value2));
     }
 
-    /**
-     * @dataProvider subtractionExamples
-     * @test
-     */
-    public function it_subtracts_a_value_from_another(int|float|string $value1, int|float|string $value2, int|float|string $expected)
-    {
+    #[DataProvider('subtractionExamples')]
+    #[Test]
+    public function it_subtracts_a_value_from_another(
+        int|float|string $value1,
+        int|float|string $value2,
+        int|float|string $expected,
+    ): void {
         $this->assertEquals($expected, $this->getCalculator()->subtract($value1, $value2));
     }
 
-    /**
-     * @dataProvider multiplicationExamples
-     * @test
-     */
-    public function it_multiplies_a_value_by_another(int|float|string $value1, int|float|string $value2, int|float|string $expected)
-    {
+    #[DataProvider('multiplicationExamples')]
+    #[Test]
+    public function it_multiplies_a_value_by_another(
+        int|float|string $value1,
+        int|float|string $value2,
+        int|float|string $expected,
+    ): void {
         $this->assertEquals($expected, $this->getCalculator()->multiply($value1, $value2));
     }
 
-    /**
-     * @dataProvider divisionExamples
-     * @test
-     */
-    public function it_divides_a_value_by_another(int|float|string $value1, int|float|string $value2, int|float|string $expected)
-    {
+    #[DataProvider('divisionExamples')]
+    #[Test]
+    public function it_divides_a_value_by_another(
+        int|float|string $value1,
+        int|float|string $value2,
+        int|float|string $expected,
+    ): void {
         $result = $this->getCalculator()->divide($value1, $value2);
-        $this->assertEquals(substr($expected, 0, strlen($result)), $result);
+        $this->assertSame(substr($expected, 0, strlen($result)), $result);
     }
 
-    /**
-     * @dataProvider ceilExamples
-     * @test
-     */
-    public function it_ceils_a_value(int|float|string $value, int|float|string $expected)
+    #[DataProvider('ceilExamples')]
+    #[Test]
+    public function it_ceils_a_value(int|float|string $value, int|float|string $expected): void
     {
         $this->assertEquals($expected, $this->getCalculator()->ceil($value));
     }
 
-    /**
-     * @dataProvider floorExamples
-     * @test
-     */
-    public function it_floors_a_value(int|float|string $value, int|float|string $expected)
+    #[DataProvider('floorExamples')]
+    #[Test]
+    public function it_floors_a_value(int|float|string $value, int|float|string $expected): void
     {
         $this->assertEquals($expected, $this->getCalculator()->floor($value));
     }
 
-    /**
-     * @dataProvider absoluteExamples
-     * @test
-     */
-    public function it_calculates_the_absolute_value(int|float|string $value, int|float|string $expected)
+    #[DataProvider('absoluteExamples')]
+    #[Test]
+    public function it_calculates_the_absolute_value(int|float|string $value, int|float|string $expected): void
     {
         $this->assertEquals($expected, $this->getCalculator()->absolute($value));
     }
 
-    /**
-     * @dataProvider shareExamples
-     * @test
-     */
-    public function it_shares_a_value(int|float|string $value, int|float|string $ratio, int|float|string $total, int|float|string $expected)
-    {
+    #[DataProvider('shareExamples')]
+    #[Test]
+    public function it_shares_a_value(
+        int|float|string $value,
+        int|float|string $ratio,
+        int|float|string $total,
+        int|float|string $expected,
+    ): void {
         $this->assertEquals($expected, $this->getCalculator()->share($value, $ratio, $total));
     }
 
-    /**
-     * @dataProvider roundExamples
-     * @test
-     */
-    public function it_rounds_a_value(int|float|string $value, int $mode, int|float|string $expected)
+    #[DataProvider('roundExamples')]
+    #[Test]
+    public function it_rounds_a_value(int|float|string $value, int $mode, int|float|string $expected): void
     {
         $this->assertEquals($expected, $this->getCalculator()->round($value, $mode));
     }
 
-    /**
-     * @dataProvider compareExamples
-     * @test
-     */
-    public function it_compares_values(int|float|string $left, int|float|string $right, int $expected)
+    #[DataProvider('compareExamples')]
+    #[Test]
+    public function it_compares_values(int|float|string $left, int|float|string $right, int $expected): void
     {
-        $this->assertEquals($expected, $this->getCalculator()->compare($left, $right));
+        $this->assertSame($expected, $this->getCalculator()->compare($left, $right));
     }
 
     /**
      * @return array<string, array<int, bool|float|int|string|array|null|object>>
      */
-    public function additionExamples(): array
+    public static function additionExamples(): array
     {
         return [
             [1, 1, '2.00000000000000'],
@@ -117,7 +117,7 @@ abstract class CalculatorTestCase extends TestCase
     /**
      * @return array<string, array<int, bool|float|int|string|array|null|object>>
      */
-    public function subtractionExamples(): array
+    public static function subtractionExamples(): array
     {
         return [
             [1, 1, '0.00000000000000'],
@@ -128,7 +128,7 @@ abstract class CalculatorTestCase extends TestCase
     /**
      * @return array<string, array<int, bool|float|int|string|array|null|object>>
      */
-    public function multiplicationExamples(): array
+    public static function multiplicationExamples(): array
     {
         return [
             [1, 1.5, '1.50000000000000'],
@@ -146,7 +146,7 @@ abstract class CalculatorTestCase extends TestCase
     /**
      * @return array<string, array<int, bool|float|int|string|array|null|object>>
      */
-    public function divisionExamples(): array
+    public static function divisionExamples(): array
     {
         return [
             [6, 3, '2.00000000000000'],
@@ -165,7 +165,7 @@ abstract class CalculatorTestCase extends TestCase
     /**
      * @return array<string, array<int, bool|float|int|string|array|null|object>>
      */
-    public function ceilExamples(): array
+    public static function ceilExamples(): array
     {
         return [
             [1.2, '2'],
@@ -177,7 +177,7 @@ abstract class CalculatorTestCase extends TestCase
     /**
      * @return array<string, array<int, bool|float|int|string|array|null|object>>
      */
-    public function floorExamples(): array
+    public static function floorExamples(): array
     {
         return [
             [2.7, '2'],
@@ -189,7 +189,7 @@ abstract class CalculatorTestCase extends TestCase
     /**
      * @return array<string, array<int, bool|float|int|string|array|null|object>>
      */
-    public function absoluteExamples(): array
+    public static function absoluteExamples(): array
     {
         return [
             [2, '2'],
@@ -200,7 +200,7 @@ abstract class CalculatorTestCase extends TestCase
     /**
      * @return array<string, array<int, bool|float|int|string|array|null|object>>
      */
-    public function shareExamples(): array
+    public static function shareExamples(): array
     {
         return [
             [10, 2, 4, '5'],
@@ -210,7 +210,7 @@ abstract class CalculatorTestCase extends TestCase
     /**
      * @return array<string, array<int, bool|float|int|string|array|null|object>>
      */
-    public function compareExamples(): array
+    public static function compareExamples(): array
     {
         return [
             [1, 0, 1],

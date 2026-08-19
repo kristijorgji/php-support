@@ -3,18 +3,17 @@
 namespace kristijorgji\Tests\Iso;
 
 use kristijorgji\Iso\Countries;
+use kristijorgji\Iso\CountryInfo;
 use kristijorgji\Iso\JsonCountryInfoRepository;
 use PHPUnit\Framework\TestCase;
 use function array_keys;
 use function file_get_contents;
 use function json_decode;
 
-class JsonCountryInfoRepositoryTest extends TestCase
+final class JsonCountryInfoRepositoryTest extends TestCase
 {
-    private const DATA_DIR = __DIR__ . '/../../data/countries_info';
-
-    /** @var list<string> */
-    private const SPOT_CHECK = ['AL', 'XK', 'MK', 'RS', 'DE', 'GR', 'IT', 'CH', 'US'];
+    private const string DATA_DIR = __DIR__ . '/../../data/countries_info';
+    private const array SPOT_CHECK = ['AL', 'XK', 'MK', 'RS', 'DE', 'GR', 'IT', 'CH', 'US'];
 
     public function test_en_and_sq_have_identical_keys_and_flag_emojis(): void
     {
@@ -57,12 +56,12 @@ class JsonCountryInfoRepositoryTest extends TestCase
     {
         $repo = new JsonCountryInfoRepository(dataDir: self::DATA_DIR);
         $al = $repo->find(Countries::ALBANIA, 'en');
-        $this->assertNotNull($al);
+        $this->assertInstanceOf(CountryInfo::class, $al);
         $this->assertSame('Albania', $al->getName());
         $this->assertSame('🇦🇱', $al->getFlagEmoji());
 
         $fallback = $repo->find(Countries::ALBANIA, 'de');
-        $this->assertNotNull($fallback);
+        $this->assertInstanceOf(CountryInfo::class, $fallback);
         $this->assertSame('Albania', $fallback->getName());
     }
 

@@ -9,6 +9,7 @@ use kristijorgji\Geo\GeoLocationDetails;
 use kristijorgji\Iso\Countries;
 use MaxMind\Db\Reader\InvalidDatabaseException;
 use function is_file;
+use function is_string;
 use function sprintf;
 
 final class MaxMindDbResolver implements GeoLocationResolverInterface

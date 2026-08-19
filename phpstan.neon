@@ -1,0 +1,15 @@
+includes:
+    - vendor/phpstan/phpstan/conf/bleedingEdge.neon
+
+parameters:
+    paths:
+        - src
+    excludePaths:
+        - src/Money
+    level: 6
+    phpVersion: 80500
+    treatPhpDocTypesAsCertain: false
+    reportUnmatchedIgnoredErrors: true
+    ignoreErrors:
+        -
+            identifier: missingType.iterableValue

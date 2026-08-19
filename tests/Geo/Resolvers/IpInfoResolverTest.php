@@ -10,14 +10,16 @@ use kristijorgji\Geo\Resolvers\IpInfoResolver;
 use kristijorgji\Iso\Countries;
 use PHPUnit\Framework\TestCase;
 
-class IpInfoResolverTest extends TestCase
+final class IpInfoResolverTest extends TestCase
 {
     public function test_maps_successful_response(): void
     {
         $client = $this->createMock(ClientInterface::class);
-        $client->method('request')->willReturn(new Response(200, [], '{"ip":"8.8.8.8","country":"AL","city":"Tirana"}'));
+        $client->method('request')->willReturn(
+            new Response(200, [], '{"ip":"8.8.8.8","country":"AL","city":"Tirana"}'),
+        );
 
-        $details = (new IpInfoResolver($client, 'token'))->detailsFromIp('8.8.8.8');
+        $details = new IpInfoResolver($client, 'token')->detailsFromIp('8.8.8.8');
         $this->assertSame(Countries::ALBANIA, $details->getCountryCode());
         $this->assertSame('Tirana', $details->getCity());
         $this->assertNull($details->getCountryName());
@@ -29,7 +31,7 @@ class IpInfoResolverTest extends TestCase
         $client->method('request')->willReturn(new Response(200, [], '{"ip":"127.0.0.1","bogon":true}'));
 
         $this->expectException(BogonCannotBeResolvedException::class);
-        (new IpInfoResolver($client, 'token'))->detailsFromIp('127.0.0.1');
+        new IpInfoResolver($client, 'token')->detailsFromIp('127.0.0.1');
     }
 
     public function test_pseudo_country_code_is_resolver_exception_not_value_error(): void
@@ -38,6 +40,6 @@ class IpInfoResolverTest extends TestCase
         $client->method('request')->willReturn(new Response(200, [], '{"ip":"1.2.3.4","country":"EU"}'));
 
         $this->expectException(GeoLocationResolverException::class);
-        (new IpInfoResolver($client, 'token'))->detailsFromIp('1.2.3.4');
+        new IpInfoResolver($client, 'token')->detailsFromIp('1.2.3.4');
     }
 }

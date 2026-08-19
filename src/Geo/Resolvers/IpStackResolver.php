@@ -7,16 +7,17 @@ use GuzzleHttp\RequestOptions;
 use kristijorgji\Geo\Exceptions\GeoLocationResolverException;
 use kristijorgji\Geo\GeoLocationDetails;
 use kristijorgji\Iso\Countries;
+use function is_string;
 use function json_decode;
 use function json_encode;
 use function sprintf;
 
-final class IpStackResolver implements GeoLocationResolverInterface
+final readonly class IpStackResolver implements GeoLocationResolverInterface
 {
     public function __construct(
-        private readonly ClientInterface $client,
-        private readonly string $accessKey,
-        private readonly float $timeoutSeconds = 1.0,
+        private ClientInterface $client,
+        private string $accessKey,
+        private float $timeoutSeconds = 1.0,
     ) {
     }
 

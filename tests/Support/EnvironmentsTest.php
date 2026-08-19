@@ -5,7 +5,7 @@ namespace kristijorgji\Tests\Support;
 use kristijorgji\Support\Environments;
 use PHPUnit\Framework\TestCase;
 
-class EnvironmentsTest extends TestCase
+final class EnvironmentsTest extends TestCase
 {
     public function test_cases(): void
     {

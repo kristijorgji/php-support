@@ -3,36 +3,38 @@
 namespace kristijorgji\Money\Tests;
 
 use kristijorgji\Money\Number;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
+use Throwable;
+use function str_repeat;
+use function strlen;
+use function substr;
+use const PHP_INT_MAX;
 
-class NumberTest extends TestCase
+final class NumberTest extends TestCase
 {
-    /**
-     * @dataProvider constructorValuesProvider
-     */
+    #[DataProvider('constructorValuesProvider')]
     public function testConstructor(
         string $integerPart,
         string $fractionalPart,
         bool $isCorrect,
-        string $expectedString = null
-    )
-    {
+        ?string $expectedString = null,
+    ): void {
         if (!$isCorrect) {
-            $this->expectException(\Throwable::class);
+            $this->expectException(Throwable::class);
         }
 
         $number = new Number($integerPart, $fractionalPart);
         if ($expectedString !== null) {
-            $this->assertEquals($expectedString, (string) $number);
-        } {
-            $this->assertTrue(true);
-        }
+            $this->assertSame($expectedString, (string) $number);
+        } $this->assertTrue(true);
     }
 
     /**
      * @return array<string, array<int, bool|float|int|string|array|null|object>>
      */
-    public function constructorValuesProvider(): array
+    public static function constructorValuesProvider(): array
     {
         return [
             ['a', '2', false],
@@ -44,19 +46,17 @@ class NumberTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider fromStringProvider
-     */
-    public function testFromString(string $input, bool $throwsException, ?string $expectedAsString = null)
+    #[DataProvider('fromStringProvider')]
+    public function testFromString(string $input, bool $throwsException, ?string $expectedAsString = null): void
     {
         if ($throwsException) {
-            $this->expectException(\Throwable::class);
+            $this->expectException(Throwable::class);
         }
 
         $number = Number::fromString($input);
 
         if ($expectedAsString !== null) {
-            $this->assertEquals($expectedAsString, (string) $number);
+            $this->assertSame($expectedAsString, (string) $number);
         } else {
             $this->assertTrue(true);
         }
@@ -65,7 +65,7 @@ class NumberTest extends TestCase
     /**
      * @return array<string, array<int, bool|float|int|string|array|null|object>>
      */
-    public function fromStringProvider(): array
+    public static function fromStringProvider(): array
     {
         return [
             ['10', false, '10'],
@@ -87,23 +87,21 @@ class NumberTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider fromFloatProvider
-     */
-    public function testFromFloat(float|int|string $input, bool $isCorrect, string $expectedString = '')
+    #[DataProvider('fromFloatProvider')]
+    public function testFromFloat(float|int|string $input, bool $isCorrect, string $expectedString = ''): void
     {
         if (!$isCorrect) {
-            $this->expectException(\Throwable::class);
+            $this->expectException(Throwable::class);
         }
 
         $number = Number::fromFloat($input);
-        $this->assertEquals($expectedString, (string) $number);
+        $this->assertSame($expectedString, (string) $number);
     }
 
     /**
      * @return array<string, array<int, bool|float|int|string|array|null|object>>
      */
-    public function fromFloatProvider(): array
+    public static function fromFloatProvider(): array
     {
         return [
             ['23.23', false],
@@ -115,7 +113,7 @@ class NumberTest extends TestCase
         ];
     }
 
-    public function testIsDecimal()
+    public function testIsDecimal(): void
     {
         $number = new Number('10');
         $this->assertFalse($number->isDecimal());
@@ -124,7 +122,7 @@ class NumberTest extends TestCase
         $this->assertTrue($number->isDecimal());
     }
 
-    public function testIsInteger()
+    public function testIsInteger(): void
     {
         $number = new Number('10');
         $this->assertTrue($number->isInteger());
@@ -133,7 +131,7 @@ class NumberTest extends TestCase
         $this->assertFalse($number->isInteger());
     }
 
-    public function testIsHalf()
+    public function testIsHalf(): void
     {
         $number = new Number('10', '5');
         $this->assertTrue($number->isHalf());
@@ -142,7 +140,7 @@ class NumberTest extends TestCase
         $this->assertFalse($number->isInteger());
     }
 
-    public function testIsNegative()
+    public function testIsNegative(): void
     {
         $number = new Number('10', '2');
         $this->assertFalse($number->isNegative());
@@ -151,31 +149,29 @@ class NumberTest extends TestCase
         $this->assertTrue($number->isNegative());
     }
 
-    public function testGetIntegerPart()
+    public function testGetIntegerPart(): void
     {
         $number = Number::fromString('12.2424212');
         $this->assertEquals('12', $number->getIntegerPart());
     }
 
-    public function testFractionalPart()
+    public function testFractionalPart(): void
     {
         $number = Number::fromString('12.12412');
         $this->assertEquals('12412', $number->getFractionalPart());
     }
 
-    /**
-     * @dataProvider toStringProvider
-     */
-    public function testToString(string $input)
+    #[DataProvider('toStringProvider')]
+    public function testToString(string $input): void
     {
         $number = Number::fromString($input);
-        $this->assertEquals($input, (string) $number);
+        $this->assertSame($input, (string) $number);
     }
 
     /**
      * @return array<string, array<int, bool|float|int|string|array|null|object>>
      */
-    public function toStringProvider(): array
+    public static function toStringProvider(): array
     {
         return [
             ['12.231'],
@@ -186,12 +182,17 @@ class NumberTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider numberExamples
-     * @test
-     */
-    public function it_has_attributes(string $number, bool $decimal, bool $half, bool $currentEven, bool $negative, string $integerPart, string $fractionalPart)
-    {
+    #[DataProvider('numberExamples')]
+    #[Test]
+    public function it_has_attributes(
+        string $number,
+        bool $decimal,
+        bool $half,
+        bool $currentEven,
+        bool $negative,
+        string $integerPart,
+        string $fractionalPart,
+    ): void {
         $number = Number::fromString($number);
         $this->assertSame($decimal, $number->isDecimal());
         $this->assertSame($half, $number->isHalf());
@@ -205,7 +206,7 @@ class NumberTest extends TestCase
     /**
      * @return array<string, array<int, bool|float|int|string|array|null|object>>
      */
-    public function numberExamples(): array
+    public static function numberExamples(): array
     {
         return [
             ['0', false, false, true, false, '0', ''],
@@ -251,31 +252,35 @@ class NumberTest extends TestCase
                 '',
             ],
             [
-                substr((string) PHP_INT_MAX, 0, strlen((string) PHP_INT_MAX) - 1).str_repeat('0', strlen((string) PHP_INT_MAX) - 1).PHP_INT_MAX,
+                substr((string) PHP_INT_MAX, 0, strlen((string) PHP_INT_MAX) - 1).str_repeat(
+                    '0',
+                    strlen((string) PHP_INT_MAX) - 1,
+                ).PHP_INT_MAX,
                 false,
                 false,
                 false,
                 false,
-                substr((string) PHP_INT_MAX, 0, strlen((string) PHP_INT_MAX) - 1).str_repeat('0', strlen((string) PHP_INT_MAX) - 1).PHP_INT_MAX,
+                substr((string) PHP_INT_MAX, 0, strlen((string) PHP_INT_MAX) - 1).str_repeat(
+                    '0',
+                    strlen((string) PHP_INT_MAX) - 1,
+                ).PHP_INT_MAX,
                 '',
             ],
         ];
     }
 
-    /**
-     * @dataProvider invalidNumberExamples
-     * @test
-     */
-    public function it_fails_parsing_invalid_numbers(string $number)
+    #[DataProvider('invalidNumberExamples')]
+    #[Test]
+    public function it_fails_parsing_invalid_numbers(string $number): void
     {
-        $this->expectException(\Throwable::class);
+        $this->expectException(Throwable::class);
         Number::fromString($number);
     }
 
     /**
      * @return array<string, array<int, bool|float|int|string|array|null|object>>
      */
-    public function invalidNumberExamples(): array
+    public static function invalidNumberExamples(): array
     {
         return [
             [''],
@@ -288,7 +293,7 @@ class NumberTest extends TestCase
         ];
     }
 
-    public function testIsCloserToNext()
+    public function testIsCloserToNext(): void
     {
         $number = new Number('10', '');
         $this->assertFalse($number->isCloserToNext());

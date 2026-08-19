@@ -3,13 +3,12 @@
 namespace kristijorgji\Tests\Net;
 
 use kristijorgji\Net\IpUtils;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
-class IpUtilsTest extends TestCase
+final class IpUtilsTest extends TestCase
 {
-    /**
-     * @dataProvider bogonExamples
-     */
+    #[DataProvider('bogonExamples')]
     public function test_is_bogon(string $ip, bool $expected): void
     {
         $this->assertSame($expected, IpUtils::isBogon($ip), $ip);
@@ -18,7 +17,7 @@ class IpUtilsTest extends TestCase
     /**
      * @return list<array{0: string, 1: bool}>
      */
-    public function bogonExamples(): array
+    public static function bogonExamples(): array
     {
         return [
             ['8.8.8.8', false],
@@ -44,9 +43,7 @@ class IpUtilsTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider privateExamples
-     */
+    #[DataProvider('privateExamples')]
     public function test_is_private_ip(string $ip, bool $expected): void
     {
         $this->assertSame($expected, IpUtils::isPrivateIp($ip), $ip);
@@ -55,7 +52,7 @@ class IpUtilsTest extends TestCase
     /**
      * @return list<array{0: string, 1: bool}>
      */
-    public function privateExamples(): array
+    public static function privateExamples(): array
     {
         return [
             ['10.1.2.3', true],

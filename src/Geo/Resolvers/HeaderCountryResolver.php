@@ -9,11 +9,11 @@ use kristijorgji\Iso\Countries;
 use function sprintf;
 use function strtoupper;
 
-final class HeaderCountryResolver implements GeoLocationResolverInterface
+final readonly class HeaderCountryResolver implements GeoLocationResolverInterface
 {
     public function __construct(
-        private readonly RequestContextInterface $context,
-        private readonly bool $trusted = false,
+        private RequestContextInterface $context,
+        private bool $trusted = false,
     ) {
     }
 

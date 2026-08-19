@@ -5,7 +5,7 @@ namespace kristijorgji\Tests\Iso;
 use kristijorgji\Iso\Countries;
 use PHPUnit\Framework\TestCase;
 
-class CountriesTest extends TestCase
+final class CountriesTest extends TestCase
 {
     public function test_union_includes_south_sudan_and_kosovo(): void
     {

@@ -4,8 +4,9 @@ namespace kristijorgji\Tests\Iso;
 
 use kristijorgji\Iso\Currencies;
 use PHPUnit\Framework\TestCase;
+use function array_map;
 
-class CurrenciesTest extends TestCase
+final class CurrenciesTest extends TestCase
 {
     public function test_allowlist(): void
     {

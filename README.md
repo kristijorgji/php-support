@@ -1,9 +1,9 @@
 # kristijorgji/php-support
 
-Shared PHP primitives used by Single apps (and others):
+Shared PHP primitives:
 
 - `kristijorgji\Money\*` — major-unit decimal money with bcmath (`Money`, `Number`, `Currency`, calculators)
-- `kristijorgji\Iso\*` — ISO country enum (union of the two Single apps, including `XK` and `SS`), product `Currencies` allowlist, and localized country name/flag lookup
+- `kristijorgji\Iso\*` — ISO 3166-1 alpha-2 country enum (plus the commonly-needed non-ISO `XK` and `SS`), a nine-code product `Currencies` allowlist, and localized country name/flag lookup
 - `kristijorgji\Net\IpUtils` — client IP extraction, private-IP and bogon checks
 - `kristijorgji\Geo\*` — IP geolocation chain (`ChainGeoLocationService`) with header, MaxMind, ipinfo and ipstack resolvers
 - `kristijorgji\Support\*` — `TimeManager`, `Environments`, `LocaleProviderInterface`
@@ -14,7 +14,7 @@ Shared PHP primitives used by Single apps (and others):
 composer require kristijorgji/php-support
 ```
 
-Local path (sibling checkout under `s/`):
+Local path (sibling checkout):
 
 ```json
 "repositories": {
@@ -28,7 +28,7 @@ Local path (sibling checkout under `s/`):
 
 ## Currency vs product allowlists
 
-`kristijorgji\Money\Currency` is a generic code VO. The product allowlist `kristijorgji\Iso\Currencies` is shared because both Single apps sell the same 9 codes:
+`kristijorgji\Money\Currency` is a generic code VO. The product allowlist `kristijorgji\Iso\Currencies` is a nine-code allowlist for products that sell in a fixed set of currencies:
 
 ```php
 use kristijorgji\Iso\Currencies;

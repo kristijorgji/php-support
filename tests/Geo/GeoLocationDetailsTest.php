@@ -6,12 +6,15 @@ use kristijorgji\Geo\GeoLocationDetails;
 use kristijorgji\Iso\Countries;
 use kristijorgji\Tests\Geo\Factories\GeoLocationDetailsFactory;
 use PHPUnit\Framework\TestCase;
+use function json_encode;
 
-class GeoLocationDetailsTest extends TestCase
+final class GeoLocationDetailsTest extends TestCase
 {
     public function test_from_json_tolerates_missing_country_flag(): void
     {
-        $details = GeoLocationDetails::fromJson('{"countryCode":"AL","countryName":"Albania","city":"Tirana","countryFlagEmoji":"🇦🇱"}');
+        $details = GeoLocationDetails::fromJson(
+            '{"countryCode":"AL","countryName":"Albania","city":"Tirana","countryFlagEmoji":"🇦🇱"}',
+        );
         $this->assertSame(Countries::ALBANIA, $details->getCountryCode());
         $this->assertNull($details->getCountryFlag());
         $this->assertSame('Tirana', $details->getCity());

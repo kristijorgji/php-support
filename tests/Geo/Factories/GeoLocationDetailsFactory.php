@@ -8,7 +8,7 @@ use kristijorgji\Iso\Countries;
 final class GeoLocationDetailsFactory
 {
     /**
-     * @param array<string, mixed> $custom
+     * @param array<string, Countries|string|null> $custom
      */
     public static function make(array $custom = []): GeoLocationDetails
     {

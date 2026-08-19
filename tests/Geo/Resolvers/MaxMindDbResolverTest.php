@@ -6,7 +6,7 @@ use kristijorgji\Geo\Exceptions\GeoLocationResolverException;
 use kristijorgji\Geo\Resolvers\MaxMindDbResolver;
 use PHPUnit\Framework\TestCase;
 
-class MaxMindDbResolverTest extends TestCase
+final class MaxMindDbResolverTest extends TestCase
 {
     public function test_missing_database_throws_resolver_exception(): void
     {

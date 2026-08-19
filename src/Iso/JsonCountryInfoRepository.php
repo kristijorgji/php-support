@@ -4,19 +4,21 @@ namespace kristijorgji\Iso;
 
 use Psr\SimpleCache\CacheInterface;
 use RuntimeException;
+use function dirname;
 use function file_get_contents;
+use function is_array;
 use function is_file;
 use function json_decode;
 use function sprintf;
 
-final class JsonCountryInfoRepository implements CountryInfoRepositoryInterface
+final readonly class JsonCountryInfoRepository implements CountryInfoRepositoryInterface
 {
-    private const FALLBACK_LOCALE = 'en';
+    private const string FALLBACK_LOCALE = 'en';
 
     public function __construct(
-        private readonly ?CacheInterface $cache = null,
-        private readonly int $ttlSeconds = 604800,
-        private readonly ?string $dataDir = null,
+        private ?CacheInterface $cache = null,
+        private int $ttlSeconds = 604800,
+        private ?string $dataDir = null,
     ) {
     }
 

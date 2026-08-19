@@ -2,12 +2,16 @@
 
 namespace kristijorgji\Net;
 
+use function array_any;
 use function count;
 use function explode;
 use function filter_var;
 use function inet_pton;
-use function strlen;
+use function intdiv;
+use function is_array;
 use function str_contains;
+use function strlen;
+use function substr;
 use function unpack;
 use const FILTER_FLAG_IPV4;
 use const FILTER_FLAG_IPV6;
@@ -15,26 +19,15 @@ use const FILTER_VALIDATE_IP;
 
 final class IpUtils
 {
-    /**
-     * @var list<string>
-     */
-    private const PRIVATE_V4 = [
+    private const array PRIVATE_V4 = [
         '10.0.0.0/8',
         '172.16.0.0/12',
         '192.168.0.0/16',
     ];
-
-    /**
-     * @var list<string>
-     */
-    private const PRIVATE_V6 = [
+    private const array PRIVATE_V6 = [
         'fc00::/7',
     ];
-
-    /**
-     * @var list<string>
-     */
-    private const BOGON_V4 = [
+    private const array BOGON_V4 = [
         '0.0.0.0/8',
         '10.0.0.0/8',
         '100.64.0.0/10',
@@ -52,11 +45,7 @@ final class IpUtils
         '240.0.0.0/4',
         '255.255.255.255/32',
     ];
-
-    /**
-     * @var list<string>
-     */
-    private const BOGON_V6 = [
+    private const array BOGON_V6 = [
         '::/128',
         '::1/128',
         '::ffff:0:0/96',
@@ -138,13 +127,7 @@ final class IpUtils
      */
     private static function matchesAnyCidr(string $ip, array $cidrs): bool
     {
-        foreach ($cidrs as $cidr) {
-            if (self::inCidr($ip, $cidr)) {
-                return true;
-            }
-        }
-
-        return false;
+        return array_any($cidrs, fn($cidr) => self::inCidr($ip, $cidr));
     }
 
     private static function inCidr(string $ip, string $cidr): bool
@@ -168,7 +151,7 @@ final class IpUtils
             return true;
         }
 
-        $mask = (~((1 << (8 - $bits)) - 1)) & 0xFF;
+        $mask = (~((1 << 8 - $bits) - 1)) & 0xFF;
         $ipByte = unpack('C', $ipBin[$bytes])[1];
         $subnetByte = unpack('C', $subnetBin[$bytes])[1];
 

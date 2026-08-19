@@ -9,7 +9,7 @@ trait RoundExamples
     /**
      * @return array<string, array<int, bool|float|int|string|array|null|object>>
      */
-    public function roundExamples(): array
+    public static function roundExamples(): array
     {
         return [
             [2.6, Money::ROUND_HALF_EVEN, '3'],

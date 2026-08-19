@@ -3,7 +3,6 @@
 namespace kristijorgji\Geo;
 
 use kristijorgji\Geo\Exceptions\BogonCannotBeResolvedException;
-use kristijorgji\Geo\Exceptions\GeoLocationResolverException;
 use kristijorgji\Geo\Exceptions\GeoLocationServiceException;
 use kristijorgji\Geo\Exceptions\PrivateIpCannotBeResolvedException;
 use kristijorgji\Geo\Resolvers\GeoLocationResolverInterface;
@@ -13,20 +12,22 @@ use kristijorgji\Support\LocaleProviderInterface;
 use Psr\Log\LoggerInterface;
 use Psr\SimpleCache\CacheInterface;
 use Throwable;
+use function is_string;
+use function json_encode;
 use function sprintf;
 
-final class ChainGeoLocationService implements GeoLocationServiceInterface
+final readonly class ChainGeoLocationService implements GeoLocationServiceInterface
 {
     /**
      * @param list<GeoLocationResolverInterface> $resolvers ordered, first success wins
      */
     public function __construct(
-        private readonly array $resolvers,
-        private readonly LoggerInterface $logger,
-        private readonly ?CountryInfoRepositoryInterface $countryInfo = null,
-        private readonly ?LocaleProviderInterface $localeProvider = null,
-        private readonly ?CacheInterface $cache = null,
-        private readonly int $cacheTtlSeconds = 86400,
+        private array $resolvers,
+        private LoggerInterface $logger,
+        private ?CountryInfoRepositoryInterface $countryInfo = null,
+        private ?LocaleProviderInterface $localeProvider = null,
+        private ?CacheInterface $cache = null,
+        private int $cacheTtlSeconds = 86400,
     ) {
     }
 
@@ -35,12 +36,15 @@ final class ChainGeoLocationService implements GeoLocationServiceInterface
         if (IpUtils::isPrivateIp($ip)) {
             $this->logger->debug(sprintf('Skipping geolocation for private IP %s', $ip));
             throw new PrivateIpCannotBeResolvedException(
-                sprintf('GeoLocation details cannot be retrieved from private IP %s. Private IPs are not resolvable.', $ip),
+                sprintf(
+                    'GeoLocation details cannot be retrieved from private IP %s. Private IPs are not resolvable.',
+                    $ip,
+                ),
             );
         }
 
         if (IpUtils::isBogon($ip)) {
-            $this->logger->debug(sprintf('Skipping geolocation for bogon IP %s', $ip));
+            $this->logger->warning(sprintf('Skipping geolocation for bogon IP %s', $ip));
             throw new BogonCannotBeResolvedException(
                 sprintf('%s is a bogon address and cannot be resolved.', $ip),
             );
@@ -62,11 +66,6 @@ final class ChainGeoLocationService implements GeoLocationServiceInterface
             } catch (BogonCannotBeResolvedException $e) {
                 $this->logger->info($e->getMessage());
                 throw $e;
-            } catch (GeoLocationResolverException $e) {
-                $this->logger->warning(
-                    sprintf('Failed to geolocate ip %s with resolver %s: %s', $ip, $resolver->name(), $e->getMessage()),
-                    ['exception' => $e],
-                );
             } catch (Throwable $e) {
                 $this->logger->warning(
                     sprintf('Failed to geolocate ip %s with resolver %s: %s', $ip, $resolver->name(), $e->getMessage()),
@@ -88,7 +87,7 @@ final class ChainGeoLocationService implements GeoLocationServiceInterface
                 );
             }
 
-            $result = (new GeoLocationDetailsBuilder($result))
+            $result = new GeoLocationDetailsBuilder($result)
                 ->setCountryName($info?->getName() ?? '')
                 ->setCountryFlagEmoji($info?->getFlagEmoji() ?? '')
                 ->build();

@@ -13,12 +13,12 @@ use function json_encode;
 use function property_exists;
 use function sprintf;
 
-final class IpInfoResolver implements GeoLocationResolverInterface
+final readonly class IpInfoResolver implements GeoLocationResolverInterface
 {
     public function __construct(
-        private readonly ClientInterface $client,
-        private readonly string $token,
-        private readonly float $timeoutSeconds = 1.0,
+        private ClientInterface $client,
+        private string $token,
+        private float $timeoutSeconds = 1.0,
     ) {
     }
 
