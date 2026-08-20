@@ -8,12 +8,16 @@ use function dirname;
 use function file_get_contents;
 use function is_array;
 use function is_file;
+use function is_string;
 use function json_decode;
 use function sprintf;
 
 final readonly class JsonCountryInfoRepository implements CountryInfoRepositoryInterface
 {
     private const string FALLBACK_LOCALE = 'en';
+
+    /** Bumped so poisoned pre-0.3.1 Redis entries (raw JSON arrays) are ignored. */
+    private const string CACHE_KEY_PREFIX = 'countriesInfo.v2.';
 
     public function __construct(
         private ?CacheInterface $cache = null,
@@ -33,11 +37,11 @@ final readonly class JsonCountryInfoRepository implements CountryInfoRepositoryI
     public function all(string $locale): array
     {
         $normalized = $locale !== '' ? $locale : self::FALLBACK_LOCALE;
-        $cacheKey = sprintf('countriesInfo.%s', $normalized);
+        $cacheKey = self::CACHE_KEY_PREFIX . $normalized;
         if ($this->cache !== null) {
-            $cached = $this->cache->get($cacheKey);
-            if (is_array($cached)) {
-                return $cached;
+            $fromCache = $this->countryInfoMapFromCache($this->cache->get($cacheKey), $cacheKey);
+            if ($fromCache !== null) {
+                return $fromCache;
             }
         }
 
@@ -74,8 +78,65 @@ final readonly class JsonCountryInfoRepository implements CountryInfoRepositoryI
             throw new RuntimeException(sprintf('Invalid country info JSON in %s', $path));
         }
 
+        return $this->hydrateLocaleMap($decoded);
+    }
+
+    /**
+     * Accept only CountryInfo maps or hydrate raw JSON-shaped maps; ignore junk.
+     *
+     * @return array<string, CountryInfo>|null
+     */
+    private function countryInfoMapFromCache(mixed $cached, string $cacheKey): ?array
+    {
+        if (!is_array($cached)) {
+            return null;
+        }
+
+        if ($cached === []) {
+            return [];
+        }
+
+        $allCountryInfo = true;
+        $allRawMaps = true;
+        foreach ($cached as $value) {
+            if (!$value instanceof CountryInfo) {
+                $allCountryInfo = false;
+            }
+            if (!is_array($value)) {
+                $allRawMaps = false;
+            }
+        }
+
+        if ($allCountryInfo) {
+            /** @var array<string, CountryInfo> $cached */
+            return $cached;
+        }
+
+        if (!$allRawMaps) {
+            return null;
+        }
+
+        /** @var array<string, array{name?: string, flagEmoji?: string}> $cached */
+        $hydrated = $this->hydrateLocaleMap($cached);
+        if ($this->cache !== null && $hydrated !== []) {
+            $this->cache->set($cacheKey, $hydrated, $this->ttlSeconds);
+        }
+
+        return $hydrated;
+    }
+
+    /**
+     * @param array<string, array{name?: string, flagEmoji?: string}> $decoded
+     * @return array<string, CountryInfo>
+     */
+    private function hydrateLocaleMap(array $decoded): array
+    {
         $result = [];
         foreach ($decoded as $code => $info) {
+            if (!is_string($code) || !is_array($info)) {
+                continue;
+            }
+
             $country = Countries::tryFrom($code);
             if ($country === null) {
                 continue;

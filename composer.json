@@ -2,7 +2,7 @@
     "name": "kristijorgji/php-support",
     "description": "Shared PHP primitives: Money, ISO countries/currencies, IP utils, geolocation",
     "type": "library",
-    "version": "0.3.0",
+    "version": "0.3.1",
     "license": "MIT",
     "authors": [
         {
